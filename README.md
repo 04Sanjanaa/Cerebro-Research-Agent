@@ -99,7 +99,7 @@ CEREBRO-Research-Agent/
 │   ├── sample_output.md
 │   └── cited_answers.md
 │
-├── tests/                     # 21 automated tests
+├── tests/                     # 26 automated tests
 │   └── test_cerebro.py
 │
 ├── .env.example
@@ -112,39 +112,75 @@ CEREBRO-Research-Agent/
 
 ## Installation
 
-### From the Repository Root
+### Windows
 
-#### Windows
+Open a terminal in the repository ROOT:
 
-1. Create and activate a virtual environment:
-   ```bash
-   python -m venv venv
-   .\venv\Scripts\activate
-   ```
-2. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-3. Configure the environment variables:
-   ```bash
-   cp .env.example .env
-   ```
+```bash
+python -m venv venv
+```
 
-#### macOS/Linux
+Activate:
 
-1. Create and activate a virtual environment:
-   ```bash
-   python3 -m venv venv
-   source venv/bin/activate
-   ```
-2. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-3. Configure the environment variables:
-   ```bash
-   cp .env.example .env
-   ```
+```bash
+.\venv\Scripts\activate
+```
+
+Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+Configure environment:
+
+```bash
+copy .env.example .env
+```
+
+Then edit `.env` and add `OPENAI_API_KEY` if using LLM synthesis.
+
+Only AFTER this:
+
+```bash
+cd backend
+python app.py
+```
+
+### macOS/Linux
+
+Open a terminal in the repository ROOT:
+
+```bash
+python3 -m venv venv
+```
+
+Activate:
+
+```bash
+source venv/bin/activate
+```
+
+Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+Configure environment:
+
+```bash
+cp .env.example .env
+```
+
+Then edit `.env` and add `OPENAI_API_KEY` if using LLM synthesis.
+
+Only AFTER this:
+
+```bash
+cd backend
+python app.py
+```
 
 ---
 
@@ -349,7 +385,7 @@ Run unit tests, API tests, and ingestion checks with:
 ```bash
 pytest tests/ -v
 ```
-All **25 test cases** pass successfully. For detailed descriptions of the tests, see [docs/TESTING.md](docs/TESTING.md).
+All **26 test cases** pass successfully. For detailed descriptions of the tests, see [docs/TESTING.md](docs/TESTING.md).
 
 ---
 
@@ -383,5 +419,5 @@ A detailed outline of system design tradeoffs (local vs hosted, hybrid vs semant
 - [x] Retrieval method documentation (`docs/RETRIEVAL_METHOD.md`)
 - [x] Design Tradeoffs (`docs/TRADEOFFS.md`)
 - [x] Architecture diagrams (`docs/ARCHITECTURE.md`)
-- [x] 21 automated tests (`tests/test_cerebro.py`)
+- [x] 26 automated tests (`tests/test_cerebro.py`)
 - [x] Grounded cited answering & no-answer refusal
