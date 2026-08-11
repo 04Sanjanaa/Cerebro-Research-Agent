@@ -81,3 +81,55 @@ class CitationService:
             "If multiple sources support the same statement, cite all of them, e.g. [1][2]. "
             "Do NOT cite a source that does not actually support the claim."
         )
+
+    def validate_citations(
+        self, answer: str, citations: List[Dict[str, Any]], has_evidence: bool
+    ) -> Dict[str, Any]:
+        """
+        Extract citation tags [1], [2], etc., and validate them against actual citations.
+
+        Args:
+            answer: LLM generated answer.
+            citations: List of valid citation dicts.
+            has_evidence: Whether the query had sufficient evidence.
+
+        Returns:
+            dict containing:
+                "valid": bool,
+                "error_message": Optional[str],
+                "invalid_ids": List[int],
+                "missing_citations": bool
+        """
+        import re
+
+        # Extract citation numbers
+        citation_ids = set(int(num) for num in re.findall(r"\[(\d+)\]", answer))
+        valid_ids = set(c["id"] for c in citations)
+
+        # Nonexistent citation check
+        invalid_ids = list(citation_ids - valid_ids)
+
+        # Missing citation check (factual content with no citations where required)
+        is_refusal = (
+            "couldn't find" in answer.lower()
+            or "insufficient" in answer.lower()
+            or "not configured" in answer.lower()
+        )
+        missing_citations = False
+        if has_evidence and not is_refusal and not citation_ids:
+            missing_citations = True
+
+        is_valid = len(invalid_ids) == 0 and not missing_citations
+        error_msg = None
+        if invalid_ids:
+            error_msg = f"Answer contains invalid citation IDs: {invalid_ids}."
+        elif missing_citations:
+            error_msg = "Answer contains factual text but is missing required source citations."
+
+        return {
+            "valid": is_valid,
+            "error_message": error_msg,
+            "invalid_ids": invalid_ids,
+            "missing_citations": missing_citations,
+        }
+

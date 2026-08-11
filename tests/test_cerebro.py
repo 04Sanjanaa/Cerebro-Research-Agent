@@ -136,6 +136,45 @@ class TestCitations:
             assert "chunk_id" in c
             assert "passage" in c
 
+    def test_valid_citations(self):
+        from services.citation_service import CitationService
+        cs = CitationService()
+        citations = [{"id": 1, "source": "handbook.txt"}]
+        answer = "Factual statement supporting leave policy [1]."
+        validation = cs.validate_citations(answer, citations, has_evidence=True)
+        assert validation["valid"] is True
+        assert not validation["invalid_ids"]
+        assert validation["missing_citations"] is False
+
+    def test_nonexistent_citation(self):
+        from services.citation_service import CitationService
+        cs = CitationService()
+        citations = [{"id": 1, "source": "handbook.txt"}]
+        answer = "Factual statement citing nonexistent source [99]."
+        validation = cs.validate_citations(answer, citations, has_evidence=True)
+        assert validation["valid"] is False
+        assert validation["invalid_ids"] == [99]
+
+    def test_answer_with_missing_citations(self):
+        from services.citation_service import CitationService
+        cs = CitationService()
+        citations = [{"id": 1, "source": "handbook.txt"}]
+        answer = "Factual statement that has no citations at all."
+        validation = cs.validate_citations(answer, citations, has_evidence=True)
+        assert validation["valid"] is False
+        assert validation["missing_citations"] is True
+
+    def test_multiple_valid_citations(self):
+        from services.citation_service import CitationService
+        cs = CitationService()
+        citations = [{"id": 1, "source": "handbook.txt"}, {"id": 2, "source": "security.txt"}]
+        answer = "Factual statement citing both [1] and [2] in multiple places [1][2]."
+        validation = cs.validate_citations(answer, citations, has_evidence=True)
+        assert validation["valid"] is True
+        assert not validation["invalid_ids"]
+        assert validation["missing_citations"] is False
+
+
 
 # ── Grounding / LLM Tests ─────────────────────────────────────────────────────
 

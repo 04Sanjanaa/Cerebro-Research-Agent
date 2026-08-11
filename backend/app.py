@@ -174,12 +174,47 @@ def research():
         answer = llm_result.get("response", "")
         insufficient = llm_result.get("insufficient_evidence", False)
 
+        # ── Step 3.5: Citation Validation ──────────────────────────────────────
+        grounded = not insufficient
+        if not insufficient and citations:
+            validation = citation_service.validate_citations(
+                answer=answer,
+                citations=citations,
+                has_evidence=has_evidence
+            )
+            if not validation["valid"]:
+                # Try safely regenerating once with a stricter prompt if LLM is enabled
+                if llm_service.enabled and llm_service.client:
+                    stricter_context = (
+                        evidence_context + 
+                        "\n\nWARNING: Your previous answer was rejected because you either included invalid citation numbers "
+                        "or forgot to cite your claims altogether. You MUST cite every claim using ONLY the numbers: " + 
+                        ", ".join(f"[{c['id']}]" for c in citations) + "."
+                    )
+                    llm_result = llm_service.generate_grounded_answer(
+                        query=query,
+                        evidence_context=stricter_context,
+                        citations=citations,
+                        has_evidence=has_evidence,
+                    )
+                    answer = llm_result.get("response", "")
+                    validation = citation_service.validate_citations(
+                        answer=answer,
+                        citations=citations,
+                        has_evidence=has_evidence
+                    )
+                
+                # Check validation result again
+                if not validation["valid"]:
+                    grounded = False
+                    answer = f"Grounded citation error: {validation['error_message']} [Citation validation failed]"
+
         # ── Step 4: Log ───────────────────────────────────────────────────────
         sources_for_log = [
             {"title": c["source"], "section": c["section"]}
             for c in citations
         ]
-        logger_service.log_query(query, not insufficient, sources_for_log)
+        logger_service.log_query(query, not insufficient and grounded, sources_for_log)
 
         # ── Step 5: Build response ────────────────────────────────────────────
         retrieval_info = {
@@ -197,6 +232,7 @@ def research():
             "citations": citations,
             "retrieval_info": retrieval_info,
             "insufficient_evidence": insufficient,
+            "grounded": grounded,
             "model_used": llm_result.get("model", "unknown"),
             "tokens_used": llm_result.get("tokens_used", 0),
             "timestamp": datetime.now().isoformat(),

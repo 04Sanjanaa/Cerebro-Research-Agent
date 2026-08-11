@@ -165,7 +165,7 @@ export default function App() {
           {stats && (
             <>
               <span className="status-pill">{stats.retrieval_mode === 'semantic' ? '⚡ Semantic' : '🔤 TF-IDF'}</span>
-              <span className="status-pill">{stats.llm_enabled ? `🤖 ${stats.llm_model}` : '📝 Keyword'}</span>
+              <span className="status-pill">{stats.llm_enabled ? `🤖 ${stats.llm_model}` : '📝 Local Fallback (No LLM)'}</span>
               <span className="status-pill">📚 {stats.total_chunks} chunks</span>
             </>
           )}
@@ -269,7 +269,7 @@ export default function App() {
                 'Unanswered': stats.unanswered_queries,
                 'Response Rate': stats.response_rate,
                 'Retrieval Mode': stats.retrieval_mode,
-                'LLM Enabled': stats.llm_enabled ? `Yes (${stats.llm_model})` : 'No (keyword fallback)',
+                'LLM Enabled': stats.llm_enabled ? `Yes (${stats.llm_model})` : 'No (local evidence-only fallback)',
                 'Min Score Threshold': stats.min_score_threshold,
               }).map(([k, v]) => (
                 <div key={k} className="stat-card"><span className="stat-label">{k}</span><span className="stat-value">{String(v)}</span></div>
