@@ -1,0 +1,12 @@
+[
+  {"id": 1, "question": "What is the annual leave entitlement?", "expected": "answered", "category": "direct"},
+  {"id": 2, "question": "How far in advance must leave be requested?", "expected": "answered", "category": "direct"},
+  {"id": 3, "question": "What are the remote work eligibility requirements?", "expected": "answered", "category": "direct"},
+  {"id": 4, "question": "What are the password complexity requirements?", "expected": "answered", "category": "direct"},
+  {"id": 5, "question": "What is the expense reimbursement limit for meals?", "expected": "answered", "category": "direct"},
+  {"id": 6, "question": "What are the requirements and restrictions for remote work?", "expected": "answered", "category": "multi-passage"},
+  {"id": 7, "question": "How do the leave and remote work policies interact for new employees?", "expected": "answered", "category": "multi-document"},
+  {"id": 8, "question": "What was the company revenue last year?", "expected": "insufficient", "category": "out-of-scope"},
+  {"id": 9, "question": "Who is the CEO of the company?", "expected": "insufficient", "category": "out-of-scope"},
+  {"id": 10, "question": "What is the company stock price today?", "expected": "insufficient", "category": "out-of-scope"}
+]
