@@ -40,9 +40,10 @@ def make_retrieval_service(chunks=None):
     from services.embedding_service import EmbeddingService
     from services.retrieval_service import RetrievalService
     emb = EmbeddingService()
-    svc = RetrievalService(emb, top_k=5, min_score=0.20, alpha=0.60)
+    svc = RetrievalService(emb, top_k=5, min_score=0.20, alpha=0.60, evidence_threshold=0.58, keyword_weight=0.40)
     svc.index(chunks or ALL_CHUNKS)
     return svc
+
 
 
 class TestRetrieval:

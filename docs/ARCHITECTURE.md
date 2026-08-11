@@ -18,8 +18,8 @@ graph TD
         RS -->|Term Frequency| BM25[BM25 Engine]
         
         RS -->|3. Evaluate Relevance| Gate{Relevance Gate}
-        Gate -->|Score >= 0.68| Synth[Grounded LLM Service]
-        Gate -->|Score < 0.68| Reject[Insufficient Evidence]
+        Gate -->|Score >= EVIDENCE_THRESHOLD| Synth[Grounded LLM Service]
+        Gate -->|Score < EVIDENCE_THRESHOLD| Reject[Insufficient Evidence]
         
         Synth -->|4. Generate Citations| CS[Citation Service]
         Reject -->|Fallback Template| CS
@@ -47,13 +47,14 @@ graph TD
 - Search phase:
   - Computes semantic cosine similarity of query against all chunks.
   - Computes BM25 relevance scores.
-  - Combines scores: `combined = 0.6 * semantic + 0.4 * bm25_normalized`.
-  - Excludes chunks below the `min_score = 0.30` threshold.
+  - Combines scores: `combined = SEMANTIC_WEIGHT * semantic + KEYWORD_WEIGHT * bm25_normalized`.
+  - Excludes chunks below the `RETRIEVAL_MIN_SCORE` (default `0.30`) threshold.
 
 ### 3. Relevance Gate & Hallucination Prevention
-- A strict evidence gate requires that the maximum raw semantic score across all retrieved chunks must be at least `0.68`.
+- A strict evidence gate requires that the maximum raw semantic score across all retrieved chunks must be at least `EVIDENCE_THRESHOLD` (default `0.68`).
 - If the threshold is not met, the pipeline aborts synthesis and returns a clean "Insufficient Evidence" response.
 - This prevents the LLM from synthesizing an answer based on weak, noisy, or off-topic retrieved passages.
+
 
 ### 4. LLM Synthesis & Citations (`LLMService` & `CitationService`)
 - Maps the top-K retrieved evidence passages to citation numbers (`[1]`, `[2]`, ...).

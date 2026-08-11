@@ -38,15 +38,19 @@ os.makedirs(str(BASE_DIR / "data"), exist_ok=True)
 os.makedirs(str(BASE_DIR.parent / "logs"), exist_ok=True)
 
 # ── Service Initialization ─────────────────────────────────────────────────────
+from config import get_config
+config_obj = get_config()
 print("[CEREBRO] Initializing services...")
 
 document_service = DocumentService(knowledge_base_dir=KB_DIR)
 embedding_service = EmbeddingService()
 retrieval_service = RetrievalService(
     embedding_service=embedding_service,
-    top_k=int(os.getenv("SEARCH_TOP_K", 5)),
-    min_score=float(os.getenv("MIN_SIMILARITY_SCORE", 0.30)),
-    alpha=float(os.getenv("SEMANTIC_WEIGHT", 0.60)),
+    top_k=config_obj.TOP_K,
+    min_score=config_obj.RETRIEVAL_MIN_SCORE,
+    alpha=config_obj.SEMANTIC_WEIGHT,
+    evidence_threshold=config_obj.EVIDENCE_THRESHOLD,
+    keyword_weight=config_obj.KEYWORD_WEIGHT,
 )
 citation_service = CitationService()
 llm_service = LLMService(

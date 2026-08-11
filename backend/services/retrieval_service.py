@@ -93,14 +93,19 @@ class RetrievalService:
         top_k: int = 5,
         min_score: float = 0.30,
         alpha: float = 0.60,
+        evidence_threshold: float = 0.68,
+        keyword_weight: float = 0.40,
     ):
         self._emb = embedding_service
         self.top_k = top_k
         self.min_score = min_score
         self.alpha = alpha
+        self.evidence_threshold = evidence_threshold
+        self.keyword_weight = keyword_weight
         self._bm25 = BM25()
         self._chunks: List[Dict[str, Any]] = []
         self._indexed = False
+
 
     # ── Indexing ───────────────────────────────────────────────────────────────
 
@@ -155,7 +160,7 @@ class RetrievalService:
             if self._emb.mode == "tfidf":
                 combined = bm25
             else:
-                combined = self.alpha * sem + (1.0 - self.alpha) * bm25
+                combined = self.alpha * sem + self.keyword_weight * bm25
 
             if combined >= self.min_score:
                 enriched = dict(chunk)
@@ -169,12 +174,6 @@ class RetrievalService:
         results.sort(key=lambda x: x["combined_score"], reverse=True)
         return results[: self.top_k]
 
-    # Evidence gate: minimum max-semantic-score across all retrieved results
-    # that qualifies as "sufficient evidence" to pass to the LLM.
-    # Set at 0.68 to clearly separate relevant queries (>0.70) from off-topic ones (<0.65)
-    # based on empirical testing with the sample knowledge base.
-    EVIDENCE_SEMANTIC_THRESHOLD = 0.68
-
     def has_sufficient_evidence(self, results: List[Dict[str, Any]]) -> bool:
         """
         Return True if ANY retrieved chunk has a high enough SEMANTIC score.
@@ -182,16 +181,17 @@ class RetrievalService:
         We check the maximum semantic score across all results because:
         - BM25 may rank a chunk with lower semantic similarity first due to keyword overlap
         - A high-semantic-score chunk deeper in the list still provides valid evidence
-        - Threshold 0.58 indicates substantial topical overlap
+        - Threshold determines if the evidence actually supports the query topic
         """
         if not results:
             return False
         # For semantic mode: check best semantic score across all results
         if self._emb.mode == "semantic":
             max_sem = max(r.get("semantic_score", 0.0) for r in results)
-            return max_sem >= self.EVIDENCE_SEMANTIC_THRESHOLD
+            return max_sem >= self.evidence_threshold
         # For TF-IDF fallback: gate on top combined score
         return results[0]["combined_score"] >= (self.min_score + 0.15)
+
 
     # ── Helpers ────────────────────────────────────────────────────────────────
 

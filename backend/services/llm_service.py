@@ -150,9 +150,9 @@ class LLMService:
 
         parts = []
         parts.append(
-            f"*Note: LLM is not configured (no OPENAI_API_KEY). "
-            f"Showing extracted evidence passages.*\n"
+            "*Note: LLM API key is not configured. Please configure the required environment variable to use Research Agent answer synthesis. Showing local evidence-only fallback passages.*\n"
         )
+
 
         for c in citations:
             label = c["label"]

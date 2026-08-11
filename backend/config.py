@@ -51,9 +51,13 @@ class Config:
     MAX_DOCUMENT_SIZE = int(os.getenv('MAX_DOCUMENT_SIZE', 10 * 1024 * 1024))  # 10MB
     ALLOWED_DOCUMENT_TYPES = ['pdf', 'txt', 'docx', 'md']
     
-    # Search settings
-    SEARCH_TOP_K = int(os.getenv('SEARCH_TOP_K', 3))
-    SEARCH_THRESHOLD = float(os.getenv('SEARCH_THRESHOLD', 0.5))
+    # Retrieval Settings
+    TOP_K = int(os.getenv('TOP_K', 5))
+    RETRIEVAL_MIN_SCORE = float(os.getenv('RETRIEVAL_MIN_SCORE', 0.30))
+    EVIDENCE_THRESHOLD = float(os.getenv('EVIDENCE_THRESHOLD', 0.68))
+    SEMANTIC_WEIGHT = float(os.getenv('SEMANTIC_WEIGHT', 0.60))
+    KEYWORD_WEIGHT = float(os.getenv('KEYWORD_WEIGHT', 0.40))
+
 
 
 class DevelopmentConfig(Config):

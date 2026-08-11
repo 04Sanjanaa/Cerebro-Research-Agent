@@ -6,7 +6,7 @@ CEREBRO uses a **Hybrid BM25 + Semantic Retrieval** approach that combines:
 1. **BM25** (keyword-based, exact term matching)
 2. **Sentence-Transformers** (semantic similarity, `all-MiniLM-L6-v2`)
 
-Combined score: `combined = 0.6 * semantic + 0.4 * bm25_normalized`
+Combined score: `combined = SEMANTIC_WEIGHT * semantic + KEYWORD_WEIGHT * bm25_normalized`
 
 ---
 
@@ -58,20 +58,20 @@ semantic_score = cosine_similarity(query_embedding, chunk_embedding)
 
 bm25_norm      = bm25_raw_score / max(bm25_raw_scores_for_query)
 
-combined_score = 0.6 * semantic_score + 0.4 * bm25_norm
+combined_score = SEMANTIC_WEIGHT * semantic_score + KEYWORD_WEIGHT * bm25_norm
 ```
 
-**Rationale for 0.6/0.4 split:** Semantic similarity captures intent better than exact keyword matching, especially for paraphrased questions. BM25 provides exact-term recall that the embedding model may miss for rare domain terms.
+**Rationale for split (SEMANTIC_WEIGHT=0.60, KEYWORD_WEIGHT=0.40):** Semantic similarity captures intent better than exact keyword matching, especially for paraphrased questions. BM25 provides exact-term recall that the embedding model may miss for rare domain terms.
 
 ---
 
 ## Relevance Threshold
 
-**Retrieval threshold (min_score):** `0.30`
+**Retrieval threshold (RETRIEVAL_MIN_SCORE):** `0.30`
 - Chunks with `combined_score < 0.30` are excluded from retrieval results.
 
-**Evidence gate (EVIDENCE_SEMANTIC_THRESHOLD):** `0.68`
-- The maximum `semantic_score` across all retrieved chunks must exceed 0.68 for the query to be considered "answerable."
+**Evidence gate (EVIDENCE_THRESHOLD):** `0.68`
+- The maximum `semantic_score` across all retrieved chunks must exceed `0.68` for the query to be considered "answerable."
 - This gate uses semantic score (not combined) to prevent BM25's exact-term boost from inflating scores on off-topic queries containing common words like "company."
 
 **Empirical calibration:**
@@ -83,9 +83,10 @@ combined_score = 0.6 * semantic_score + 0.4 * bm25_norm
 
 ## Top-K
 
-Default: `top_k = 5` chunks per query.
+Default: `TOP_K = 5` chunks per query.
 
 5 chunks provides enough evidence context for multi-source synthesis without exceeding LLM context limits.
+
 
 ---
 
