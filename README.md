@@ -112,42 +112,36 @@ CEREBRO-Research-Agent/
 
 ## Installation
 
-### Windows
+### From the Repository Root
 
-1. Open a terminal in the root directory:
-   ```bash
-   cd backend
-   ```
-2. Create and activate a virtual environment:
+#### Windows
+
+1. Create and activate a virtual environment:
    ```bash
    python -m venv venv
    .\venv\Scripts\activate
    ```
-3. Install dependencies:
+2. Install dependencies:
    ```bash
    pip install -r requirements.txt
    ```
-4. Configure environment:
+3. Configure the environment variables:
    ```bash
    cp .env.example .env
    ```
 
-### macOS/Linux
+#### macOS/Linux
 
-1. Open a terminal in the root directory:
-   ```bash
-   cd backend
-   ```
-2. Create and activate a virtual environment:
+1. Create and activate a virtual environment:
    ```bash
    python3 -m venv venv
    source venv/bin/activate
    ```
-3. Install dependencies:
+2. Install dependencies:
    ```bash
    pip install -r requirements.txt
    ```
-4. Configure environment:
+3. Configure the environment variables:
    ```bash
    cp .env.example .env
    ```
@@ -190,8 +184,9 @@ SECRET_KEY=dev-secret-key
 
 ## Running the Backend
 
-From the `backend` folder with the virtual environment activated:
+With the virtual environment activated, change directory to `backend` and run the app:
 ```bash
+cd backend
 python app.py
 ```
 Backend will start on `http://localhost:5000`.
@@ -220,7 +215,7 @@ The frontend opens on `http://localhost:3000`.
 
 To run the system in LLM Synthesis Mode instead of the Local Fallback Mode:
 
-1. Open `backend/.env` (created from `.env.example`).
+1. Open the `.env` file at the repository root (created from `.env.example`).
 2. Set your OpenAI API key:
    ```ini
    OPENAI_API_KEY=sk-proj-yourActualKeyHere...

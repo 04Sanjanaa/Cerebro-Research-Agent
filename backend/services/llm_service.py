@@ -6,9 +6,9 @@ Enforces evidence-only answering with citation instructions.
 
 import os
 from typing import List, Dict, Any, Optional
+from pathlib import Path
 from dotenv import load_dotenv
-
-load_dotenv()
+load_dotenv(dotenv_path=Path(__file__).resolve().parent.parent.parent / ".env")
 
 # Insufficient-evidence response template
 INSUFFICIENT_EVIDENCE_RESPONSE = (
