@@ -1,0 +1,88 @@
+EXPENSE REIMBURSEMENT POLICY — ACME CORP (SAMPLE / FICTIONAL)
+Policy Reference: FIN-003 | Version 1.8 | Last Updated: February 2025
+This is a fictional sample document for demonstration purposes only.
+
+=============================================================
+SECTION 1: OVERVIEW
+=============================================================
+
+This policy governs the reimbursement of business-related expenses incurred by
+Acme Corp employees. All expenses must be legitimate, reasonable, and directly
+related to company business.
+
+=============================================================
+SECTION 2: ELIGIBLE EXPENSES
+=============================================================
+
+2.1 Business Travel
+- Airfare: Economy class for domestic flights under 6 hours; business class permitted for international
+- Ground transportation: Taxis, rideshare, rental cars (compact class)
+- Accommodation: Up to $200 USD per night for domestic; up to $300 per night for international
+- Meals during travel: Up to $50 USD per day domestic; up to $75 per day international
+
+2.2 Client Entertainment
+- Meals with clients: Up to $100 per person with prior manager approval
+- Client events, tickets, or activities: Require VP-level pre-approval
+- Alcohol: Permitted only as part of client entertainment; not reimbursed for team meals
+
+2.3 Professional Development
+- Conference registration fees: Up to $2,000 per conference with manager approval
+- Training courses or certifications: Up to $1,500 per year without additional approval
+- Books and subscriptions directly related to role: Up to $200 per year
+
+2.4 Office Supplies (Remote Workers)
+- Home office equipment under $100: Reimbursed without prior approval
+- Home office equipment $100-$500: Requires manager approval
+- Home office annual stipend: $500 per year (see Employee Handbook Section 4.5)
+
+=============================================================
+SECTION 3: EXPENSE SUBMISSION PROCESS
+=============================================================
+
+3.1 Submission Portal
+All expenses must be submitted through the Expense Portal at expenses.acmecorp.example.com
+
+3.2 Submission Deadline
+Expenses must be submitted within 30 calendar days of the expense date.
+Late submissions may be rejected at manager discretion.
+
+3.3 Required Documentation
+- Itemized receipt required for all expenses over $25
+- Receipts must show: vendor name, date, amount, and items purchased
+- Credit card statements alone are not acceptable substitutes for itemized receipts
+
+3.4 Approval Workflow
+1. Employee submits expense with receipt and business justification
+2. Direct manager reviews and approves (or rejects with reason)
+3. Finance team processes approved expenses
+4. Reimbursement issued within 14 business days of final approval
+
+=============================================================
+SECTION 4: NON-REIMBURSABLE EXPENSES
+=============================================================
+
+The following expenses will NOT be reimbursed:
+- Personal travel or entertainment
+- Traffic fines, parking tickets, or penalties
+- Lost or stolen personal items
+- Expenses for spouses, partners, or family members (unless pre-approved)
+- Upgrades beyond policy limits (e.g., first class when business class is the maximum)
+- Expenses incurred after employee resignation or termination
+- Expenses without valid receipts (for amounts over $25)
+
+=============================================================
+SECTION 5: CORPORATE CREDIT CARD
+=============================================================
+
+5.1 Eligibility
+Corporate credit cards are issued to employees who travel more than 4 times per year.
+Applications must be approved by Finance and HR.
+
+5.2 Usage Rules
+- Corporate cards must only be used for approved business expenses
+- Personal charges on corporate cards require immediate reimbursement
+- Cards must be reported lost or stolen within 24 hours
+
+=============================================================
+END OF DOCUMENT
+=============================================================

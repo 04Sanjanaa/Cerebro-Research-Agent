@@ -1,0 +1,142 @@
+INFORMATION SECURITY POLICY — ACME CORP (SAMPLE / FICTIONAL)
+Policy Reference: IS-001 | Version 2.1 | Last Updated: March 2025
+This is a fictional sample document for demonstration purposes only.
+
+=============================================================
+SECTION 1: PURPOSE AND SCOPE
+=============================================================
+
+This policy establishes the information security requirements for all Acme Corp
+employees, contractors, and third-party users who access company systems or data.
+Non-compliance may result in disciplinary action up to and including termination.
+
+=============================================================
+SECTION 2: PASSWORD REQUIREMENTS
+=============================================================
+
+2.1 Password Complexity
+All user account passwords must meet the following requirements:
+- Minimum length: 12 characters
+- Must include at least one uppercase letter (A-Z)
+- Must include at least one lowercase letter (a-z)
+- Must include at least one number (0-9)
+- Must include at least one special character (!@#$%^&*)
+- Must not contain the user's name, email address, or username
+- Must not be a previously used password (last 12 passwords are blocked)
+
+2.2 Password Expiry
+Passwords must be changed every 90 days. Users will receive a reminder 14 days before expiry.
+Failure to update passwords will result in account lockout.
+
+2.3 Multi-Factor Authentication (MFA)
+MFA is mandatory for:
+- All remote access (VPN, remote desktop)
+- Access to cloud services (Microsoft 365, AWS, Google Workspace)
+- Access to HR and financial systems
+- Administrative accounts
+
+Approved MFA methods: Authenticator apps (Microsoft Authenticator, Google Authenticator),
+hardware tokens. SMS-based MFA is deprecated and will be phased out by Q3 2025.
+
+2.4 Account Lockout Policy
+Accounts are locked after 5 consecutive failed login attempts.
+Lockout duration: 30 minutes (self-unlock) or contact IT support for immediate unlock.
+
+=============================================================
+SECTION 3: DATA CLASSIFICATION AND HANDLING
+=============================================================
+
+3.1 Data Classification Levels
+- Public: Information approved for public release
+- Internal: General business information for employee use
+- Confidential: Sensitive business data requiring access controls
+- Restricted: Highly sensitive data (PII, financial records, IP)
+
+3.2 Handling Rules
+- Restricted data must be encrypted at rest and in transit
+- Confidential data must not be stored on personal devices
+- All data shared externally must be approved by a department head
+- USB drives are prohibited for data transfer of Confidential or Restricted data
+
+=============================================================
+SECTION 4: ACCEPTABLE USE POLICY
+=============================================================
+
+4.1 Company Equipment
+Company-provided equipment must be used primarily for business purposes.
+Limited personal use is permitted provided it does not:
+- Involve illegal activities
+- Compromise system security
+- Consume excessive network resources
+- Interfere with work responsibilities
+
+4.2 Software Installation
+Only IT-approved software may be installed on company devices.
+Software installation requests must be submitted through the IT Portal.
+Unauthorized software may be removed without notice.
+
+4.3 Internet Use
+The following are prohibited on company networks and devices:
+- Downloading or distributing copyrighted material without authorization
+- Accessing adult content, gambling, or illegal websites
+- Running personal businesses or side projects
+- Cryptocurrency mining
+
+=============================================================
+SECTION 5: INCIDENT REPORTING
+=============================================================
+
+5.1 What to Report
+Employees must report the following immediately:
+- Lost or stolen company devices
+- Suspected phishing emails or social engineering attempts
+- Unauthorized access to systems or data
+- Data breaches or accidental data disclosure
+
+5.2 How to Report
+- Email: security@acmecorp.example.com (monitored 24/7)
+- Phone: IT Security Hotline +1-800-555-0100
+- Internal portal: security.acmecorp.example.com/report
+
+5.3 Reporting Timeframes
+- Critical incidents (data breach, active threat): Immediately, within 1 hour
+- High-priority (lost device, account compromise): Within 4 hours
+- Standard incidents: Within 24 hours
+
+=============================================================
+SECTION 6: REMOTE ACCESS SECURITY
+=============================================================
+
+6.1 VPN Requirement
+All remote access to company systems must be through the corporate VPN.
+Direct access to internal systems from the public internet is prohibited.
+
+6.2 Home Network Security
+Remote workers must ensure:
+- Home Wi-Fi router uses WPA3 or WPA2 encryption
+- Router firmware is kept up to date
+- Guest network is separate from the working network
+
+6.3 Physical Security
+Remote workers must:
+- Lock screen when stepping away from computer (Windows key + L)
+- Ensure screens are not visible to unauthorized persons
+- Store company devices in a secure location when not in use
+
+=============================================================
+SECTION 7: COMPLIANCE AND AUDIT
+=============================================================
+
+7.1 Security Audits
+Acme Corp conducts quarterly security audits. Employees must cooperate fully
+with auditors and provide access to relevant systems and records.
+
+7.2 Consequences of Non-Compliance
+- First offense: Written warning
+- Second offense: Formal disciplinary action
+- Serious breach: Immediate suspension pending investigation, possible termination
+- Criminal activity: Termination and referral to law enforcement
+
+=============================================================
+END OF DOCUMENT
+=============================================================

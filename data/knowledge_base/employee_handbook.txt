@@ -1,0 +1,145 @@
+EMPLOYEE HANDBOOK — ACME CORP (SAMPLE / FICTIONAL)
+Version 3.2 | Effective Date: January 1, 2025
+This is a fictional sample document for demonstration purposes only.
+
+=============================================================
+SECTION 1: COMPANY OVERVIEW
+=============================================================
+
+Acme Corp is a technology services company founded in 2005. We operate across
+multiple offices globally with a remote-first culture. This handbook outlines
+the policies, procedures, and guidelines that govern employment at Acme Corp.
+
+All employees are expected to read and comply with the policies described herein.
+Questions should be directed to Human Resources at hr@acmecorp.example.com.
+
+=============================================================
+SECTION 2: EMPLOYMENT POLICIES
+=============================================================
+
+2.1 Equal Opportunity Employment
+Acme Corp is an equal opportunity employer. We do not discriminate on the basis
+of race, color, religion, gender, national origin, age, disability, or any other
+protected characteristic.
+
+2.2 Probationary Period
+All new employees serve a 90-day probationary period. During this period:
+- Performance is closely monitored
+- Benefits eligibility may be limited (see Section 5)
+- Remote work is not permitted (see Section 4)
+- Employment may be terminated without notice
+
+2.3 Employment Classifications
+- Full-time: 40 hours per week, eligible for all benefits
+- Part-time: Less than 30 hours per week, limited benefits
+- Contract: Project-based, no employee benefits
+
+=============================================================
+SECTION 3: ANNUAL LEAVE AND TIME OFF
+=============================================================
+
+3.1 Annual Leave Entitlement
+Full-time employees are entitled to 20 days of paid annual leave per calendar year.
+Leave accrues at a rate of 1.67 days per month of employment.
+Part-time employees receive leave on a pro-rata basis.
+
+3.2 Leave Carry-Forward
+Unused annual leave may be carried forward to the next calendar year, subject to a
+maximum carry-forward of 5 days. Leave exceeding this limit will be forfeited.
+
+3.3 Leave Request Procedure
+- All leave requests must be submitted at least 14 calendar days (2 weeks) in advance
+- Requests must be submitted through the HR Portal at hr-portal.acmecorp.example.com
+- Manager approval is required before leave is confirmed
+- Emergency leave may be granted with shorter notice subject to manager discretion
+
+3.4 Public Holidays
+Acme Corp observes all nationally recognized public holidays. These days are in
+addition to the annual leave entitlement and are not deducted from the leave balance.
+
+3.5 Sick Leave
+Employees are entitled to 10 days of paid sick leave per year. Sick leave does not
+carry forward. Medical certificates are required for absences exceeding 3 consecutive days.
+
+3.6 Maternity and Paternity Leave
+- Maternity leave: 26 weeks (first 16 weeks fully paid, remaining 10 weeks at 50% pay)
+- Paternity leave: 4 weeks fully paid
+- Adoption leave: Same as maternity leave entitlement
+
+=============================================================
+SECTION 4: REMOTE WORK POLICY
+=============================================================
+
+4.1 Eligibility Requirements
+Employees must meet ALL of the following criteria to be eligible for remote work:
+- Successfully completed the 90-day probationary period
+- Role has been assessed as suitable for remote work by their manager
+- No active performance improvement plans (PIPs)
+- Manager approval obtained in writing
+
+4.2 Hybrid Work Schedule
+Eligible employees may work remotely up to 3 days per week under the hybrid model.
+The remaining 2 days must be spent in the office unless otherwise agreed.
+
+4.3 Fully Remote Work
+Fully remote work (5 days per week from home) is subject to:
+- Department head approval
+- Demonstrated 6+ months of successful hybrid work
+- Role classification as remote-eligible by HR
+- Annual review and reconfirmation
+
+4.4 Core Hours Requirement
+All remote workers must be available during core hours: 10:00 AM to 3:00 PM local time.
+Outside core hours, employees are expected to respond to messages within 2 hours.
+
+4.5 Equipment and Internet Requirements
+- Stable internet connection with minimum download speed of 50 Mbps is required
+- Employees must have a dedicated workspace free from distractions
+- Company-provided laptop must be used for all work activities
+- Personal home office stipend: $500 USD per year (reimbursed via expense portal)
+
+4.6 In-Office Requirements
+Even while on a remote schedule, employees must attend the office for:
+- All-hands meetings and town halls
+- Quarterly performance reviews
+- Team-building events designated as mandatory
+- Client meetings requiring physical presence
+
+=============================================================
+SECTION 5: COMPENSATION AND BENEFITS
+=============================================================
+
+5.1 Salary Review
+Salary reviews are conducted annually in March. Merit increases are based on
+performance ratings and company financial performance.
+
+5.2 Performance Bonus
+Eligible employees may receive an annual performance bonus of up to 15% of base salary,
+awarded in April based on the prior year's performance.
+
+5.3 Health Insurance
+Acme Corp provides comprehensive health insurance for all full-time employees.
+Coverage begins on the first day of the month following the start date.
+Dependents may be added to the plan at the employee's expense.
+
+5.4 Retirement Plan
+Employees are eligible for the company 401(k) plan after 3 months of employment.
+Acme Corp matches contributions up to 4% of base salary.
+
+=============================================================
+SECTION 6: CODE OF CONDUCT
+=============================================================
+
+6.1 Professional Behavior
+All employees must maintain professional conduct in the workplace, including:
+- Treating all colleagues, clients, and partners with respect
+- Maintaining confidentiality of company and client information
+- Avoiding conflicts of interest
+
+6.2 Anti-Harassment Policy
+Acme Corp has a zero-tolerance policy for harassment of any kind. All complaints
+must be reported to HR within 30 days of the incident.
+
+=============================================================
+END OF DOCUMENT
+=============================================================

@@ -1,0 +1,113 @@
+IT SUPPORT AND ONBOARDING GUIDE — ACME CORP (SAMPLE / FICTIONAL)
+Policy Reference: IT-002 | Version 2.0 | Last Updated: January 2025
+This is a fictional sample document for demonstration purposes only.
+
+=============================================================
+SECTION 1: NEW EMPLOYEE IT SETUP
+=============================================================
+
+1.1 Pre-Start Setup (1 Week Before)
+Before your start date, IT will:
+- Provision your company laptop (Dell XPS or MacBook Pro depending on role)
+- Create your company email account (firstname.lastname@acmecorp.example.com)
+- Set up your accounts for Microsoft 365, Slack, and the HR Portal
+- Send setup credentials to your personal email address
+
+1.2 Day 1 IT Orientation
+On your first day, you will:
+- Collect your laptop from Reception (bring government-issued ID)
+- Complete IT security training (estimated 2 hours)
+- Set up MFA on all company accounts
+- Connect to the corporate VPN
+- Meet your assigned IT buddy
+
+1.3 Software Access
+Standard software pre-installed on all devices:
+- Microsoft Office 365 (Word, Excel, PowerPoint, Outlook, Teams)
+- Slack (communication)
+- Zoom (video conferencing)
+- Company VPN client (Cisco AnyConnect)
+- Password Manager (1Password)
+
+Role-specific software is installed upon request to IT.
+
+=============================================================
+SECTION 2: IT SUPPORT CHANNELS
+=============================================================
+
+2.1 Self-Service Portal
+Access the IT Self-Service Portal at: it-support.acmecorp.example.com
+Available 24/7 for:
+- Password resets
+- Software installation requests
+- Account unlock requests
+- Common troubleshooting guides
+
+2.2 Helpdesk Contact
+- Email: itsupport@acmecorp.example.com (response within 4 business hours)
+- Phone: Extension 5500 (available 8:00 AM – 6:00 PM local time)
+- Slack: #it-support channel (monitored during business hours)
+- Walk-in: IT Office, Floor 3, Main Building (9:00 AM – 5:00 PM)
+
+2.3 After-Hours Support
+For critical system outages outside business hours:
+- Emergency hotline: +1-800-555-0200
+- Email: it-emergency@acmecorp.example.com
+
+=============================================================
+SECTION 3: SUPPORT PRIORITY LEVELS
+=============================================================
+
+P1 - Critical (Response: 1 hour, Resolution: 4 hours)
+Examples: Complete system outage, data breach, production failure
+
+P2 - High (Response: 2 hours, Resolution: 8 hours)
+Examples: Email not working, VPN down, cannot access critical application
+
+P3 - Medium (Response: 4 hours, Resolution: 1 business day)
+Examples: Software not working, printer issues, minor access problems
+
+P4 - Low (Response: 1 business day, Resolution: 3 business days)
+Examples: New software requests, hardware upgrades, enhancement requests
+
+=============================================================
+SECTION 4: COMMON TROUBLESHOOTING
+=============================================================
+
+4.1 VPN Issues
+1. Ensure you are not already connected to the VPN
+2. Restart the Cisco AnyConnect client
+3. Check your MFA device is connected and working
+4. Verify your internet connection is active
+5. Contact IT if issue persists after these steps
+
+4.2 Email Issues
+1. Restart Outlook or clear the Outlook cache
+2. Check account settings: SMTP/IMAP settings in IT Portal
+3. Verify Microsoft 365 service status at status.microsoft.com
+4. Contact IT if unable to send or receive email after 15 minutes
+
+4.3 Password Reset
+Self-service password reset available at: password-reset.acmecorp.example.com
+Requires MFA verification and answers to security questions.
+
+=============================================================
+SECTION 5: DEVICE MANAGEMENT
+=============================================================
+
+5.1 Device Refresh Cycle
+Company laptops are replaced every 3 years or when no longer fit for purpose.
+Refresh requests must be submitted through the IT Portal.
+
+5.2 Lost or Stolen Devices
+Report immediately to:
+- IT Security: security@acmecorp.example.com
+- Your direct manager
+- Local law enforcement if theft is suspected
+
+Reporting deadline: Within 4 hours of discovery.
+The device will be remotely wiped upon receipt of the lost/stolen report.
+
+=============================================================
+END OF DOCUMENT
+=============================================================
