@@ -114,33 +114,18 @@ CEREBRO-Research-Agent/
 
 ### Windows
 
-Open a terminal in the repository ROOT:
+Open a terminal in the repository root:
 
 ```bash
 python -m venv venv
-```
-
-Activate:
-
-```bash
 .\venv\Scripts\activate
-```
-
-Install dependencies:
-
-```bash
 pip install -r requirements.txt
-```
-
-Configure environment:
-
-```bash
 copy .env.example .env
 ```
 
-Then edit `.env` and add `OPENAI_API_KEY` if using LLM synthesis.
+Then configure `.env`.
 
-Only AFTER this:
+Only AFTER the root-level setup:
 
 ```bash
 cd backend
@@ -149,33 +134,16 @@ python app.py
 
 ### macOS/Linux
 
-Open a terminal in the repository ROOT:
+Open a terminal in the repository root:
 
 ```bash
 python3 -m venv venv
-```
-
-Activate:
-
-```bash
 source venv/bin/activate
-```
-
-Install dependencies:
-
-```bash
 pip install -r requirements.txt
-```
-
-Configure environment:
-
-```bash
 cp .env.example .env
 ```
 
-Then edit `.env` and add `OPENAI_API_KEY` if using LLM synthesis.
-
-Only AFTER this:
+Then:
 
 ```bash
 cd backend
