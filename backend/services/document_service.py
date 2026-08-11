@@ -93,6 +93,45 @@ def _extract_section_titles(text: str) -> List[Dict[str, Any]]:
     return sections
 
 
+def split_by_sections(text: str) -> List[Dict[str, Any]]:
+    """
+    Split document text into logical sections based on common headings.
+    """
+    import re
+    # Match headers like "SECTION 3: ...", "3.1 Annual Leave...", or "Policy Reference: ..."
+    pattern = r'(?m)^([=\-]{3,}.*|[A-Z\s]{4,60}\s+—\s+.+|SECTION\s+\d+[\.:]\s+.+|\d+\.\d+\s+[A-Z].+)$'
+    matches = list(re.finditer(pattern, text))
+    
+    sections = []
+    if not matches:
+        return [{"heading": "Introduction", "body": text}]
+        
+    first_start = matches[0].start()
+    intro_text = text[:first_start].strip()
+    if intro_text:
+        lines = [l.strip() for l in intro_text.split("\n") if l.strip() and not re.match(r"^[=\-]{3,}$", l.strip())]
+        if lines:
+            sections.append({"heading": "Introduction", "body": "\n".join(lines)})
+            
+    for i in range(len(matches)):
+        heading = matches[i].group(1).strip()
+        # Clean heading from markdown or decorative separators
+        heading = re.sub(r"^[=\-\s]+|[=\-\s]+$", "", heading).strip()
+        
+        start_idx = matches[i].end()
+        end_idx = matches[i+1].start() if i + 1 < len(matches) else len(text)
+        body = text[start_idx:end_idx].strip()
+        
+        # Clean body from divider lines
+        body_lines = [line for line in body.split("\n") if not re.match(r"^[=\-]{3,}$", line.strip())]
+        cleaned_body = "\n".join(body_lines).strip()
+        
+        if cleaned_body:
+            sections.append({"heading": heading, "body": cleaned_body})
+            
+    return sections
+
+
 def chunk_text(
     text: str,
     chunk_size: int = 500,
@@ -101,118 +140,63 @@ def chunk_text(
     doc_id: str = None,
 ) -> List[Dict[str, Any]]:
     """
-    Split text into overlapping chunks with preserved metadata.
-
-    Strategy:
-    1. Prefer splitting on paragraph boundaries.
-    2. Fall back to sentence boundaries.
-    3. Hard-split at chunk_size if no boundary found.
-
-    Args:
-        text: Full document text.
-        chunk_size: Target words per chunk.
-        overlap: Words of overlap between consecutive chunks.
-        source_name: Document filename / title.
-        doc_id: Unique document identifier.
-
-    Returns:
-        List of chunk dicts with id, text, metadata.
+    Split text into logical, section-preserving chunks.
+    If a section's length exceeds chunk_size, it is sub-split into overlapping chunks.
     """
     if not text or not text.strip():
         return []
 
     doc_id = doc_id or str(uuid.uuid4())[:8]
-
-    # Split into paragraphs (double newline boundary)
-    raw_paragraphs = re.split(r"\n\s*\n", text)
-    paragraphs = [p.strip() for p in raw_paragraphs if p.strip()]
-
+    sections = split_by_sections(text)
+    
     chunks: List[Dict[str, Any]] = []
-    current_words: List[str] = []
     chunk_index = 0
-    section_title = "Introduction"
-
-    # Pre-scan section titles
-    section_lines = _extract_section_titles(text)
-
-    def _detect_section(paragraph: str) -> Optional[str]:
-        """Try to detect if paragraph is a section heading."""
-        clean = paragraph.strip()
-        if re.match(r"^(SECTION\s+\d+|[0-9]+\.[0-9]*\s+[A-Z])", clean, re.IGNORECASE):
-            return clean[:80]
-        if re.match(r"^[A-Z\s]{5,50}$", clean) and len(clean.split()) <= 8:
-            return clean
-        return None
-
-    for para in paragraphs:
-        # Update section title if this looks like a heading
-        detected = _detect_section(para)
-        if detected:
-            section_title = detected
-
-        para_words = para.split()
-
-        # If adding this paragraph would exceed chunk_size, flush first
-        if current_words and len(current_words) + len(para_words) > chunk_size:
-            chunk_text_str = " ".join(current_words)
+    
+    for sec in sections:
+        heading = sec["heading"]
+        body = sec["body"]
+        words = body.split()
+        if not words:
+            continue
+            
+        # Section fits within chunk_size
+        if len(words) <= chunk_size:
             chunk_id = f"{doc_id}_chunk_{chunk_index:03d}"
-            chunks.append(
-                {
-                    "id": chunk_id,
-                    "text": chunk_text_str,
-                    "metadata": {
-                        "doc_id": doc_id,
-                        "source": source_name,
-                        "section": section_title,
-                        "chunk_index": chunk_index,
-                        "word_count": len(current_words),
-                    },
-                }
-            )
-            chunk_index += 1
-            # Keep overlap
-            current_words = current_words[-overlap:] if overlap > 0 else []
-
-        current_words.extend(para_words)
-
-        # Force-flush if still over limit
-        while len(current_words) > chunk_size * 1.5:
-            chunk_text_str = " ".join(current_words[:chunk_size])
-            chunk_id = f"{doc_id}_chunk_{chunk_index:03d}"
-            chunks.append(
-                {
-                    "id": chunk_id,
-                    "text": chunk_text_str,
-                    "metadata": {
-                        "doc_id": doc_id,
-                        "source": source_name,
-                        "section": section_title,
-                        "chunk_index": chunk_index,
-                        "word_count": chunk_size,
-                    },
-                }
-            )
-            chunk_index += 1
-            current_words = current_words[chunk_size - overlap :]
-
-    # Flush remainder
-    if current_words:
-        chunk_text_str = " ".join(current_words)
-        chunk_id = f"{doc_id}_chunk_{chunk_index:03d}"
-        chunks.append(
-            {
+            chunks.append({
                 "id": chunk_id,
-                "text": chunk_text_str,
+                "text": f"{heading}\n{body}",
                 "metadata": {
                     "doc_id": doc_id,
                     "source": source_name,
-                    "section": section_title,
+                    "section": heading,
                     "chunk_index": chunk_index,
-                    "word_count": len(current_words),
-                },
-            }
-        )
-
+                    "word_count": len(words)
+                }
+            })
+            chunk_index += 1
+        else:
+            # Section is too large; split into overlapping sub-chunks
+            i = 0
+            part = 1
+            while i < len(words):
+                chunk_words = words[i : i + chunk_size]
+                chunk_text_str = " ".join(chunk_words)
+                chunk_id = f"{doc_id}_chunk_{chunk_index:03d}"
+                chunks.append({
+                    "id": chunk_id,
+                    "text": f"{heading} (Part {part})\n{chunk_text_str}",
+                    "metadata": {
+                        "doc_id": doc_id,
+                        "source": source_name,
+                        "section": heading,
+                        "chunk_index": chunk_index,
+                        "word_count": len(chunk_words)
+                    }
+                })
+                chunk_index += 1
+                part += 1
+                i += (chunk_size - overlap)
+                
     return chunks
 
 

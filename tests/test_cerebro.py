@@ -56,6 +56,22 @@ class TestRetrieval:
             f"Expected leave chunk first, got {results[0]['id']}"
         )
 
+    def test_retrieval_quality_ranks_leave_above_unrelated(self):
+        """Verify that an annual-leave query ranks annual-leave content above unrelated security/retirement content."""
+        svc = make_retrieval_service()
+        results = svc.retrieve("What is the annual leave entitlement?")
+        retrieved_ids = [r["id"] for r in results]
+        
+        if LEAVE_CHUNK["id"] in retrieved_ids:
+            leave_index = retrieved_ids.index(LEAVE_CHUNK["id"])
+            for unrelated in [PASSWORD_CHUNK, EXPENSE_CHUNK]:
+                if unrelated["id"] in retrieved_ids:
+                    unrelated_index = retrieved_ids.index(unrelated["id"])
+                    assert leave_index < unrelated_index, (
+                        f"Expected leave chunk to rank above {unrelated['id']}"
+                    )
+
+
     def test_password_query_ranks_password_chunk_first(self):
         """Password query should rank the security policy chunk first."""
         svc = make_retrieval_service()

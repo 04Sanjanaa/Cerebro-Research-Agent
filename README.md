@@ -216,6 +216,27 @@ The frontend opens on `http://localhost:3000`.
 
 ---
 
+## Running the Real LLM Synthesis
+
+To run the system in LLM Synthesis Mode instead of the Local Fallback Mode:
+
+1. Open `backend/.env` (created from `.env.example`).
+2. Set your OpenAI API key:
+   ```ini
+   OPENAI_API_KEY=sk-proj-yourActualKeyHere...
+   ```
+3. Restart the backend server:
+   ```bash
+   python app.py
+   ```
+4. Once restarted, all research queries will be answered using the actual LLM with strict grounding constraints.
+5. To regenerate the example outputs using your key:
+   ```bash
+   python examples/generate_answers.py
+   ```
+
+---
+
 ## Adding Knowledge Base Documents
 
 Simply place your `.txt`, `.pdf`, or `.docx` documents in:
