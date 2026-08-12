@@ -387,3 +387,4 @@ A detailed outline of system design tradeoffs (local vs hosted, hybrid vs semant
 - [x] Architecture diagrams (`docs/ARCHITECTURE.md`)
 - [x] 26 automated tests (`tests/test_cerebro.py`)
 - [x] Grounded cited answering & no-answer refusal
+
