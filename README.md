@@ -114,7 +114,7 @@ CEREBRO-Research-Agent/
 
 ### Windows
 
-Open a terminal in the repository root:
+From the REPOSITORY ROOT:
 
 ```bash
 python -m venv venv
@@ -123,9 +123,7 @@ pip install -r requirements.txt
 copy .env.example .env
 ```
 
-Then configure `.env`.
-
-Only AFTER the root-level setup:
+Then:
 
 ```bash
 cd backend
@@ -134,7 +132,7 @@ python app.py
 
 ### macOS/Linux
 
-Open a terminal in the repository root:
+From the REPOSITORY ROOT:
 
 ```bash
 python3 -m venv venv
